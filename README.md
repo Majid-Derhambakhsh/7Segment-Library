@@ -33,8 +33,8 @@
 ## How to use this driver
 
 ### The Menu Manager library can be used as follows:
-1.1  Add .h and source file in project.      
-2.1  Create configurations, for example:  
+#### 1.1  Add .h and source file in project.      
+#### 2.1  Create configurations, for example:  
 ```c++
    SSegmentCfg_TypeDef  disp_cfg;	
    
@@ -55,40 +55,65 @@
    disp_cfg.Type        = CommonAnode;
    
 ```
-3.1  Create SSegment object and initialize it, for example:  
-```c++
-   //For global access: ----------------->
+#### 3.1  Create SSegment object and initialize it, for example:  
+- #### For global access:  
+   * Object Initializer:
+   ```c++
    SSegment(uint8_t _nmb_of_segments, uint8_t _refresh_rate, uint8_t _buffer_length);
-   
-   /* Parameters:
-      _nmb_of_segments : Number of connected segments (uint8 value - Max 255)
-      _refresh_rate : Display refresh rate (uint8 value - Max 255)
-      _buffer_length : Buffer length of data (uint8 value - Max 255)
-   */
-   
-   Example:
+   ``` 
+   * Parameters:  
+      * _nmb_of_segments : Number of connected segments (uint8 value - Max 255)  
+      * _refresh_rate : Display refresh rate (uint8 value - Max 255)  
+      * _buffer_length : Buffer length of data (uint8 value - Max 255)  
+   * Example:
+   ```c++  
    SSegment MainDisplay(4, 50, 8);
    
    MainDisplay.Init(disp_cfg);
    
    // disp_cfg Is from the previous step
-   
-   //For local access: ----------------->
+   ``` 
+- #### For local access:  
+   * Object Initializer:
+   ```c++
    SSegment(SSegmentCfg_TypeDef _cfg, uint8_t _nmb_of_segments, uint8_t _refresh_rate, uint8_t _buffer_length);
-   
-   /* Parameters:
-      _cfg : Configuration of segments (SSegmentCfg_TypeDef type)
-      _nmb_of_segments : Number of connected segments (uint8 value - Max 255)
-      _refresh_rate : Display refresh rate (uint8 value - Max 255)
-      _buffer_length : Buffer length of data (uint8 value - Max 255)
-   */
-   
-   Example:
+   ``` 
+   * Parameters:  
+      * _cfg : Configuration of segments (SSegmentCfg_TypeDef type)  
+      * _nmb_of_segments : Number of connected segments (uint8 value - Max 255)  
+      * _refresh_rate : Display refresh rate (uint8 value - Max 255)  
+      * _buffer_length : Buffer length of data (uint8 value - Max 255)  
+   * Example:
+   ```c++  
    SSegment MainDisplay(disp_cfg, 4, 50, 8);
    
-   // disp_cfg Is from the previous step
+   MainDisplay.Init(disp_cfg);
    
-``` 
+   // disp_cfg Is from the previous step
+   ``` 
      
+#### 4.1  Using Sync methods for refresh display, for example:  
+- #### For ISR(Interrupt) mode refresh:  
+   ```c++
+   void Timer_Interrupt(void)
+   {
+      MainDisplay.Sync();
+   }
+   
+   ``` 
+- #### For Loop mode refresh:  
+   ```c++
+   int main()
+   {
+      //Your codes
+      
+      while(1)
+      {
+         MainDisplay.SyncLoop();
+      }
+   }
+   
+   ``` 
+
 ##### Guide is updated soon!
 #### Developer: Majid Derhambakhsh
