@@ -35,26 +35,29 @@
 ### The Menu Manager library can be used as follows:
 #### 1.1  Add .h and source file in project.      
 #### 2.1  Create configurations, for example:  
-```c++
-   SSegmentCfg_TypeDef  disp_cfg;	
-   
-   /* Parameters:
-      ControlGPIO = Connected GPIO for enable PINs
-      ControlPinA = Segment 1 enable pin
-      DataGPIO    = Connected GPIO for data PINs (A ~ F with dot point)
-      DataPinA    = Data PIN A
-      Type        = Type of Segments (CommonCathode / CommonAnode)
+   * Config type:  
+      ```c++
+      SSegmentCfg_TypeDef
+      ```
+   * Parameters:  
+      * ControlGPIO = Connected GPIO for enable PINs  
+      * ControlPinA = Segment 1 enable pin  
+      * DataGPIO    = Connected GPIO for data PINs (A ~ F with dot point)  
+      * DataPinA    = Data PIN A  
+      * Type        = Type of Segments (CommonCathode / CommonAnode)  
+          
+          
+   * Example:
+      ```c++
+      SSegmentCfg_TypeDef disp_cfg;
       
-   */
-   
-   Example:
-   disp_cfg.ControlGPIO = GPIOA;
-   disp_cfg.ControlPinA = 1;
-   disp_cfg.DataGPIO    = GPIOA;
-   disp_cfg.DataPinA    = 5;
-   disp_cfg.Type        = CommonAnode;
-   
-```
+      disp_cfg.ControlGPIO = GPIOA;
+      disp_cfg.ControlPinA = 1;
+      disp_cfg.DataGPIO    = GPIOA;
+      disp_cfg.DataPinA    = 5;
+      disp_cfg.Type        = CommonAnode;
+      ```
+      
 #### 3.1  Create SSegment object and initialize it, for example:  
 - #### For global access:  
    * Object Initializer:
@@ -65,6 +68,8 @@
       * _nmb_of_segments : Number of connected segments (uint8 value - Max 255)  
       * _refresh_rate : Display refresh rate (uint8 value - Max 255)  
       * _buffer_length : Buffer length of data (uint8 value - Max 255)  
+          
+          
    * Example:
    ```c++  
    SSegment MainDisplay(4, 50, 8);
@@ -83,6 +88,8 @@
       * _nmb_of_segments : Number of connected segments (uint8 value - Max 255)  
       * _refresh_rate : Display refresh rate (uint8 value - Max 255)  
       * _buffer_length : Buffer length of data (uint8 value - Max 255)  
+          
+          
    * Example:
    ```c++  
    SSegment MainDisplay(disp_cfg, 4, 50, 8);
