@@ -34,9 +34,16 @@
 
 ### The Menu Manager library can be used as follows:
 #### 1.  Add .h and source file in project.      
-#### 2.  Create configurations, for example:  
+#### 2.  Add 'using namespace Display;' in your project, for example:  
+  ```c++
+  using namespace Display;
+      
+  ``` 
+#### 3.  Create configurations, for example:  
    * Config type:  
       ```c++
+      using namespace Display;
+      
       SSegmentCfg_TypeDef
       ```
    * Parameters:  
@@ -49,6 +56,8 @@
           
    * Example:
       ```c++
+      using namespace Display;
+      
       SSegmentCfg_TypeDef disp_cfg;
       
       disp_cfg.ControlGPIO = GPIOA;
@@ -58,7 +67,7 @@
       disp_cfg.Type        = CommonAnode;
       ```
       
-#### 3.  Create SSegment object and initialize it, for example:  
+#### 4.  Create SSegment object and initialize it, for example:  
 - #### For global access:  
    * Object Initializer:
       ```c++
@@ -99,7 +108,7 @@
       // disp_cfg Is from the previous step
       ``` 
      
-#### 4.  Using Sync methods for refresh display, for example:  
+#### 5.  Using Sync methods for refresh display, for example:  
 - #### For ISR(Interrupt) mode refresh:  
    ```c++
    void Timer_Interrupt(void)
@@ -121,7 +130,7 @@
    }
    
    ``` 
-#### 5.  Using operation methods, for example: 
+#### 6.  Using operation methods, for example: 
    ```c++
    int main()
    {
@@ -132,7 +141,7 @@
       
       while(1)
       {
-         
+         MainDisplay.SyncLoop();
       }
    }
    ```
