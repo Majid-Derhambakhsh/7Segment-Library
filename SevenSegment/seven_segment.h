@@ -43,7 +43,7 @@ using namespace std;
 
 /* ------------------------------------------------------------------ */
 
-#elif defined(__GNUC__)  /* Check compiler */
+#elif defined(__GNUC__) && !defined(USE_HAL_DRIVER)  /* Check compiler */
 
 #pragma GCC diagnostic ignored "-Wunused-function" /* Disable 'unused function' warning */
 
@@ -144,15 +144,21 @@ namespace Display
 	#define _DELAY_MS(t)                        delay_ms((t)) /* Change function */
 	#endif /* _DELAY_MS */
 
+	typedef register_t GPIO_TypeDef;
+	typedef uint8_t    GPIO_PinState;
+
 	/* ------------------------------------------------------------------ */
 
-	#elif defined(__GNUC__)  /* Check compiler */
+	#elif defined(__GNUC__) && !defined(USE_HAL_DRIVER)  /* Check compiler */
 
 	#define _GPIO_WritePin(gpio , pn, ps)       GPIO_WritePin((&gpio), (pn),(ps)) /* Change function */
 
 	#ifndef _DELAY_MS
 	#define _DELAY_MS(t)                        _delay_ms((t)) /* Change function */
 	#endif /* _DELAY_MS */
+
+	typedef register_t GPIO_TypeDef;
+	typedef uint8_t    GPIO_PinState;
 
 	/* ------------------------------------------------------------------ */
 

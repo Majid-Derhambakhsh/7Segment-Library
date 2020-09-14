@@ -21,6 +21,12 @@
 #ifndef __SEVEN_SEGMENT_CONF_H_
 #define __SEVEN_SEGMENT_CONF_H_
 
+/* --- Required Driver.Library---- */
+/* For AVR */
+//#include "GPIO_UNIT/gpio_unit.h"
+
+/* For STM32 */
+
 /* -------- Configuration -------- */
 
 #define STM32F0
